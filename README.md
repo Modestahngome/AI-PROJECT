@@ -16,7 +16,7 @@ The application allows a user to:
 
  ![Home](Game1.jpeg)
 
- ![Home](Game-2.jpeg)
+ ![Home](Game2.jpeg)
  
 **Result Page**
 
