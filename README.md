@@ -353,7 +353,7 @@ Got self-assessment questions that improved my understanding
 
 #### 2. Documentation( Include Comprehensive Code Comments in my view)
 
-**Prompt Used**
+**Prompt Template Used**
 
 Please create comprehensive code comments for this function, following Python conventions
 
@@ -413,6 +413,8 @@ Improved Code readability
 Helped document parameters, returns, and logic
 
 #### 3. Documentation(Explaining the intent and Logic behind a code)
+
+**Prompt Template Used**
 
 I need help documenting the intent and logic behind this code. Please:
 
