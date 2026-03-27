@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASINO GAME</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            color: gold;
+            margin-top: 30px;
+            font-size: 40px;
+        }
+
+        /* 🎲 Dice styling */
+        .dice {
+            font-size: 120px;
+            margin: 30px 0;
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(90deg); }
+            50% { transform: rotate(180deg); }
+            75% { transform: rotate(270deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 🎯 Input styling */
+        input {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+            width: 80px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        /* 🎮 Button styling */
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            background: gold;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: orange;
+        }
+
+        /* ⚠️ Error styling */
+        .error {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        /* 🎰 Container */
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ROLL THE DICE 🎲</h1>
+
+    <!-- 🎲 Rolling Dice -->
+    <div class="dice">🎲</div>
+
+    <div class="container">
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" action="{% url 'play' %}">
+            {% csrf_token %}
+
+            <label>Choose a number (1–6):</label><br><br>
+
+            <input type="number" name="number" min="1" max="6" required>
+
+            <br><br>
+
+            <button type="submit">Play 🎮</button>
+        </form>
+
+    </div>
+    
+</body>
+</html>

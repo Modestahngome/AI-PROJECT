@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Result</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px gold;
+        }
+
+        h1 {
+            color: gold;
+            font-size: 40px;
+        }
+
+        .numbers {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+
+        .box {
+            background: #111;
+            padding: 20px;
+            border-radius: 15px;
+            width: 40%;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .number {
+            font-size: 50px;
+            margin-top: 10px;
+        }
+
+        .win {
+            color: #00ffcc;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .lose {
+            color: #ff4d4d;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: gold;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: orange;
+        }
+
+        /*  Confetti Animation */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--  Confetti only if user wins -->
+    {% if "Win" in result %}
+        <script>
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                document.body.appendChild(confetti);
+            }
+        </script>
+    {% endif %}
+
+    <div class="container">
+
+        <h1>🎰 Game  Result 🎰</h1>
+
+        <div class="numbers">
+            <div class="box">
+                <p>You Chose</p>
+                <div class="number">{{ user_number }}</div>
+            </div>
+
+            <div class="box">
+                <p>System Chose</p>
+                <div class="number">{{ system_number }}</div>
+            </div>
+        </div>
+
+        <!-- RESULT SECTION -->
+        {% if "Win" in result %}
+            <div class="win">🎉 CONGRATULATIONS! YOU WON! 🎉</div>
+            <div class="message">Luck is on your side today 😎 Try again and win more!</div>
+        {% else %}
+            <div class="lose">😢 You lost this round</div>
+            <div class="message">Don't worry! Even pros lose sometimes. Try again and beat the system 💪</div>
+        {% endif %}
+
+        <!-- PLAY AGAIN -->
+        <form action="{% url 'home' %}">
+            <button class="btn">Play Again 🔄</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
